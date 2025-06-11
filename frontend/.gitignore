@@ -1,0 +1,6 @@
+# Ignore a single file
+secrets.txt
+.env
+config.json
+# .gitignore
+node_modules/
