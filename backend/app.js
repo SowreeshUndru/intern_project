@@ -10,8 +10,13 @@ const redisclient=require("./services/redis.js");
 const responseRoute=require("./routes/Response.js");
 const cors=require("cors");
 const itemroute=require("./routes/item.js")
+const globalErrorHandler = require('./middlewares/GlobalErrorHandler.js')
 
+app.listen(3000);
 
+app.get('/error',(req,res,next)=>{
+    throw new Error('Test error')
+})
 
 connectDB();
 app.use(cors({
@@ -26,6 +31,7 @@ app.use("/user",loginRoute);
 app.use("/response",responseRoute);
 app.use("/item",itemroute);
 
+app.use(globalErrorHandler);
 
    
 
